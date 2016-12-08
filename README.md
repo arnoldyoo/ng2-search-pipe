@@ -1,5 +1,58 @@
+
 # SearchPipeExample
 
+This project is very simple search pipe is used with ngFor Directive.
+
+# Usage
+import pipe to module `src/app.module.ts`
+```js
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+    import { FormsModule } from '@angular/forms';
+    import { HttpModule } from '@angular/http';
+
+    import { AppComponent } from './app.component';
+    import { Ng2SearchPipe } from './pipes/ng2-search-pipe';
+
+    @NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        Ng2SearchPipe
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+```
+just use this pipe in component template
+
+```html
+<div>
+    <input #searchTerm (keyup)="0" class="search-term"  />
+    <div *ngFor="let hero of heroes | searchPipe: {term: searchTerm.value, naming:'name'}">
+        {{hero.name}}
+    </div>
+</div>
+
+```
+if you want to search using id (not name), searchPipe parameter change like this.
+```html
+<div>
+    <input #searchTerm (keyup)="0" class="search-term"  />
+    <div *ngFor="let hero of heroes | searchPipe: {term: searchTerm.value, naming:'id'}">
+        {{hero.name}}
+    </div>
+</div>
+```
+naming property is search key word. so, insert search keyword that your object property name to naming property. 
+
+---
+ 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 
 ## Development server

@@ -1,3 +1,12 @@
 <h1>
   {{title}}
 </h1>
+
+<div>
+    <input #searchTerm (keyup)="0" class="search-term"  />
+    <div *ngFor="let hero of heroes | searchPipe: {term: searchTerm.value, naming:'name'}">
+        {{hero.name}}
+    </div>
+</div>
+
+
